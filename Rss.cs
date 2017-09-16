@@ -34,7 +34,7 @@ namespace jezebel
         }
 
         [XmlRoot(ElementName = "item")]
-        public class Item
+        public class Item : IEqualityComparer<Item>
         {
             [XmlElement(ElementName = "title")]
             public string Title { get; set; }
@@ -50,6 +50,16 @@ namespace jezebel
             public Guid Guid { get; set; }
             [XmlElement(ElementName = "creator", Namespace = "http://purl.org/dc/elements/1.1/")]
             public string Creator { get; set; }
+
+            public bool Equals(Item x, Item y)
+            {
+                return x.Title.Equals(y.Title);
+            }
+
+            public int GetHashCode(Item obj)
+            {
+                return obj.Title.GetHashCode();
+            }
         }
 
         [XmlRoot(ElementName = "channel")]
