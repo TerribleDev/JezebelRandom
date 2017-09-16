@@ -13,7 +13,6 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace jezebel.Controllers
 {
-    [Route("api/[controller]")]
     public class ValuesController : Controller
     {
         IMemoryCache cache;
@@ -23,7 +22,7 @@ namespace jezebel.Controllers
         {
             this.cache = cache;
         }
-        // GET api/values
+        [Route("jezme")]
         [HttpGet]
         public async Task<IActionResult> Get(bool bypassCache)
         {
